@@ -33,7 +33,6 @@
 			this.lvFiles = new System.Windows.Forms.ListView();
 			this.colName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.colDateModified = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-			this.colType = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.colSize = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.SuspendLayout();
 			// 
@@ -48,7 +47,6 @@
 			this.lvFiles.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.colName,
             this.colDateModified,
-            this.colType,
             this.colSize});
 			this.lvFiles.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.lvFiles.Location = new System.Drawing.Point(0, 0);
@@ -67,11 +65,6 @@
 			// 
 			this.colDateModified.Text = "Date Modified";
 			this.colDateModified.Width = 116;
-			// 
-			// colType
-			// 
-			this.colType.Text = "Type";
-			this.colType.Width = 92;
 			// 
 			// colSize
 			// 
@@ -95,7 +88,6 @@
 		private System.Windows.Forms.ListView lvFiles;
 		private System.Windows.Forms.ColumnHeader colName;
 		private System.Windows.Forms.ColumnHeader colDateModified;
-		private System.Windows.Forms.ColumnHeader colType;
 		private System.Windows.Forms.ColumnHeader colSize;
 	}
 }
