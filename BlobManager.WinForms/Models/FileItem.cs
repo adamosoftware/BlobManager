@@ -17,12 +17,14 @@ namespace BlobManager.WinForms.Models
 		public FileItemType ItemType { get; set; } = FileItemType.File;
 		public bool IsSelected { get; set; }
 		public string Path { get; set; }
-		public string Name { get { return System.IO.Path.GetFileName(Path); } }
+		public string Name { get { return NameGetter.Invoke(Path); } }
 		public Image Icon { get; set; }
-		public DateTime DateModified { get; set; }
+		public DateTime? DateModified { get; set; }
 		public string Type { get; set; }
 		public long Length { get; set; }		
 		public string SizeText { get { return (ItemType == FileItemType.File) ? BytesToString(Length) : string.Empty; } }
+
+		public Func<string, string> NameGetter { get; set; } = (s) => System.IO.Path.GetFileName(s);
 
 		/// <summary>
 		/// thanks to https://stackoverflow.com/a/4975942/2023653

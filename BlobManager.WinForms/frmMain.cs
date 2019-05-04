@@ -113,9 +113,13 @@ namespace BlobManager.WinForms
 			cbContainer.Items.AddRange(containers.ToArray());
 		}
 
-		private void cbContainer_SelectedIndexChanged(object sender, EventArgs e)
+		private async void cbContainer_SelectedIndexChanged(object sender, EventArgs e)
 		{
-
+			var storage = new BlobStorage(_currentAccount);
+			string containerName = cbContainer.SelectedItem as string;
+			var items = await storage.ListBlobsAsync(containerName);
+			fgvRemote.Clear();
+			fgvRemote.AddRange(items);
 		}
 	}
 }
