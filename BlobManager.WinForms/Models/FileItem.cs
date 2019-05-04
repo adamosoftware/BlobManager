@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
+using System.Linq;
 
 namespace BlobManager.WinForms.Models
 {
@@ -32,6 +35,36 @@ namespace BlobManager.WinForms.Models
 			int place = Convert.ToInt32(Math.Floor(Math.Log(bytes, 1024)));
 			double num = Math.Round(bytes / Math.Pow(1024, place), 1);
 			return (Math.Sign(byteCount) * num).ToString() + " " + suf[place];
+		}
+
+		public static IEnumerable<FileItem> FromLocalPath(string path)
+		{
+			List<FileItem> results = new List<FileItem>();
+
+			var folders = Directory.GetDirectories(path);
+
+			results.AddRange(folders.Select(f =>
+			{
+				return new FileItem()
+				{
+					ItemType = FileItemType.Folder,
+					Path = f
+				};
+			}));
+
+			var files = Directory.GetFiles(path);
+			results.AddRange(files.Select(f =>
+			{
+				FileInfo fi = new FileInfo(f);
+				return new FileItem()
+				{
+					Path = f,
+					Length = fi.Length,
+					DateModified = fi.LastWriteTime
+				};
+			}));
+
+			return results;
 		}
 	}
 }

@@ -30,12 +30,12 @@
 		{
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
 			this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-			this.fgvLocal = new BlobManager.WinForms.Controls.FileGridView();
 			this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+			this.btnSelectLocalFolder = new System.Windows.Forms.ToolStripButton();
 			this.toolStrip2 = new System.Windows.Forms.ToolStrip();
+			this.tslLocalPath = new System.Windows.Forms.ToolStripLabel();
+			this.fgvLocal = new BlobManager.WinForms.Controls.FileGridView();
 			this.fgvRemote = new BlobManager.WinForms.Controls.FileGridView();
-			this.tbLocalFolder = new System.Windows.Forms.ToolStripTextBox();
-			this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
 			this.splitContainer1.Panel1.SuspendLayout();
 			this.splitContainer1.Panel2.SuspendLayout();
@@ -62,24 +62,27 @@
 			this.splitContainer1.SplitterDistance = 384;
 			this.splitContainer1.TabIndex = 0;
 			// 
-			// fgvLocal
-			// 
-			this.fgvLocal.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.fgvLocal.Location = new System.Drawing.Point(0, 25);
-			this.fgvLocal.Name = "fgvLocal";
-			this.fgvLocal.Size = new System.Drawing.Size(384, 332);
-			this.fgvLocal.TabIndex = 0;
-			// 
 			// toolStrip1
 			// 
 			this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tbLocalFolder,
-            this.toolStripButton1});
+            this.tslLocalPath,
+            this.btnSelectLocalFolder});
 			this.toolStrip1.Location = new System.Drawing.Point(0, 0);
 			this.toolStrip1.Name = "toolStrip1";
 			this.toolStrip1.Size = new System.Drawing.Size(384, 25);
 			this.toolStrip1.TabIndex = 1;
 			this.toolStrip1.Text = "toolStrip1";
+			// 
+			// btnSelectLocalFolder
+			// 
+			this.btnSelectLocalFolder.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+			this.btnSelectLocalFolder.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+			this.btnSelectLocalFolder.Image = ((System.Drawing.Image)(resources.GetObject("btnSelectLocalFolder.Image")));
+			this.btnSelectLocalFolder.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.btnSelectLocalFolder.Name = "btnSelectLocalFolder";
+			this.btnSelectLocalFolder.Size = new System.Drawing.Size(51, 22);
+			this.btnSelectLocalFolder.Text = "Select...";
+			this.btnSelectLocalFolder.Click += new System.EventHandler(this.btnSelectLocalFolder_Click);
 			// 
 			// toolStrip2
 			// 
@@ -89,6 +92,20 @@
 			this.toolStrip2.TabIndex = 0;
 			this.toolStrip2.Text = "toolStrip2";
 			// 
+			// tslLocalPath
+			// 
+			this.tslLocalPath.Name = "tslLocalPath";
+			this.tslLocalPath.Size = new System.Drawing.Size(59, 22);
+			this.tslLocalPath.Text = "local path";
+			// 
+			// fgvLocal
+			// 
+			this.fgvLocal.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.fgvLocal.Location = new System.Drawing.Point(0, 25);
+			this.fgvLocal.Name = "fgvLocal";
+			this.fgvLocal.Size = new System.Drawing.Size(384, 332);
+			this.fgvLocal.TabIndex = 0;
+			// 
 			// fgvRemote
 			// 
 			this.fgvRemote.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -96,20 +113,6 @@
 			this.fgvRemote.Name = "fgvRemote";
 			this.fgvRemote.Size = new System.Drawing.Size(385, 332);
 			this.fgvRemote.TabIndex = 1;
-			// 
-			// tbLocalFolder
-			// 
-			this.tbLocalFolder.Name = "tbLocalFolder";
-			this.tbLocalFolder.Size = new System.Drawing.Size(300, 25);
-			// 
-			// toolStripButton1
-			// 
-			this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-			this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
-			this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-			this.toolStripButton1.Name = "toolStripButton1";
-			this.toolStripButton1.Size = new System.Drawing.Size(51, 22);
-			this.toolStripButton1.Text = "Select...";
 			// 
 			// frmMain
 			// 
@@ -136,10 +139,10 @@
 		private System.Windows.Forms.SplitContainer splitContainer1;
 		private Controls.FileGridView fgvLocal;
 		private System.Windows.Forms.ToolStrip toolStrip1;
-		private System.Windows.Forms.ToolStripTextBox tbLocalFolder;
-		private System.Windows.Forms.ToolStripButton toolStripButton1;
+		private System.Windows.Forms.ToolStripButton btnSelectLocalFolder;
 		private Controls.FileGridView fgvRemote;
 		private System.Windows.Forms.ToolStrip toolStrip2;
+		private System.Windows.Forms.ToolStripLabel tslLocalPath;
 	}
 }
 
