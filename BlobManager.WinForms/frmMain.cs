@@ -19,6 +19,7 @@ namespace BlobManager.WinForms
 			FolderBrowserDialog dlg = new FolderBrowserDialog();
 			if (dlg.ShowDialog() == DialogResult.OK)
 			{
+				fgvLocal.Clear();
 				tslLocalPath.Text = dlg.SelectedPath;
 				var items = FileItem.FromLocalPath(dlg.SelectedPath);
 				fgvLocal.AddRange(items);

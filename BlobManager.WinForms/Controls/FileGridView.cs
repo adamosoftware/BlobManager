@@ -10,14 +10,19 @@ namespace BlobManager.WinForms.Controls
 {
 	public partial class FileGridView : UserControl
 	{
-		private BindingList<FileItem> _files = new BindingList<FileItem>();		
+		private BindingList<FileItem> _files = null;
 
 		public FileGridView()
 		{
 			InitializeComponent();
 			dataGridView1.AutoGenerateColumns = false;
-			dataGridView1.DataSource = _files;
+			Clear();
+		}
 
+		public void Clear()
+		{
+			_files = new BindingList<FileItem>();
+			dataGridView1.DataSource = _files;
 			_files.ListChanged += files_ListChanged;
 		}
 
