@@ -1,4 +1,5 @@
 ﻿using BlobManager.WinForms.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows.Forms;
@@ -17,6 +18,8 @@ namespace BlobManager.WinForms.Controls
 			dataGridView1.DataSource = _files;
 		}
 
+		public event EventHandler ItemSelected;
+
 		public void AddRange(IEnumerable<FileItem> files)
 		{
 			foreach (var item in files)
@@ -34,6 +37,18 @@ namespace BlobManager.WinForms.Controls
 						break;
 				}
 				
+			}
+		}
+
+		public FileItem SelectedItem { get; private set; }
+
+		private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+		{
+			var item = dataGridView1.Rows[e.RowIndex].DataBoundItem as FileItem;
+			if (item != null)
+			{
+				SelectedItem = item;
+				ItemSelected?.Invoke(item, new EventArgs());
 			}
 		}
 	}

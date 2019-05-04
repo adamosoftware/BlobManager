@@ -19,7 +19,7 @@ namespace BlobManager.WinForms.Models
 		public DateTime DateModified { get; set; }
 		public string Type { get; set; }
 		public long Length { get; set; }		
-		public string SizeText { get { return BytesToString(Length); } }
+		public string SizeText { get { return (ItemType == FileItemType.File) ? BytesToString(Length) : string.Empty; } }
 
 		/// <summary>
 		/// thanks to https://stackoverflow.com/a/4975942/2023653
