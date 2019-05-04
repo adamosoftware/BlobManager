@@ -37,7 +37,10 @@
 			this.colDateModified = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.colSize = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.imlSmallIcons = new System.Windows.Forms.ImageList(this.components);
+			this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+			this.tslFileCount = new System.Windows.Forms.ToolStripStatusLabel();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+			this.statusStrip1.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// dataGridView1
@@ -57,7 +60,7 @@
 			this.dataGridView1.Name = "dataGridView1";
 			this.dataGridView1.RowHeadersVisible = false;
 			this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-			this.dataGridView1.Size = new System.Drawing.Size(437, 263);
+			this.dataGridView1.Size = new System.Drawing.Size(437, 241);
 			this.dataGridView1.TabIndex = 0;
 			this.dataGridView1.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellDoubleClick);
 			// 
@@ -109,15 +112,35 @@
 			this.imlSmallIcons.TransparentColor = System.Drawing.Color.Transparent;
 			this.imlSmallIcons.Images.SetKeyName(0, "folder");
 			// 
+			// statusStrip1
+			// 
+			this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tslFileCount});
+			this.statusStrip1.Location = new System.Drawing.Point(0, 241);
+			this.statusStrip1.Name = "statusStrip1";
+			this.statusStrip1.Size = new System.Drawing.Size(437, 22);
+			this.statusStrip1.TabIndex = 1;
+			this.statusStrip1.Text = "statusStrip1";
+			// 
+			// tslFileCount
+			// 
+			this.tslFileCount.Name = "tslFileCount";
+			this.tslFileCount.Size = new System.Drawing.Size(45, 17);
+			this.tslFileCount.Text = "0 items";
+			// 
 			// FileGridView
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.Controls.Add(this.dataGridView1);
+			this.Controls.Add(this.statusStrip1);
 			this.Name = "FileGridView";
 			this.Size = new System.Drawing.Size(437, 263);
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+			this.statusStrip1.ResumeLayout(false);
+			this.statusStrip1.PerformLayout();
 			this.ResumeLayout(false);
+			this.PerformLayout();
 
 		}
 
@@ -130,5 +153,7 @@
 		private System.Windows.Forms.DataGridViewTextBoxColumn colName;
 		private System.Windows.Forms.DataGridViewTextBoxColumn colDateModified;
 		private System.Windows.Forms.DataGridViewTextBoxColumn colSize;
+		private System.Windows.Forms.StatusStrip statusStrip1;
+		private System.Windows.Forms.ToolStripStatusLabel tslFileCount;
 	}
 }

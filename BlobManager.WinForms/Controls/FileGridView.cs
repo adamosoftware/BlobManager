@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 using System.Windows.Forms;
 using WinForms.Library;
 
@@ -9,13 +10,22 @@ namespace BlobManager.WinForms.Controls
 {
 	public partial class FileGridView : UserControl
 	{
-		private BindingList<FileItem> _files = new BindingList<FileItem>();
+		private BindingList<FileItem> _files = new BindingList<FileItem>();		
 
 		public FileGridView()
 		{
 			InitializeComponent();
 			dataGridView1.AutoGenerateColumns = false;
 			dataGridView1.DataSource = _files;
+
+			_files.ListChanged += files_ListChanged;
+		}
+
+		private void files_ListChanged(object sender, ListChangedEventArgs e)
+		{
+			int folderCount = _files.Count(item => item.ItemType == FileItemType.Folder);
+			int fileCount = _files.Count(item => item.ItemType == FileItemType.File);
+			tslFileCount.Text = $"{folderCount} folders, {fileCount} files";
 		}
 
 		public event EventHandler ItemSelected;
