@@ -25,7 +25,15 @@ namespace BlobManager.WinForms
 			if (dlg.ShowDialog() == DialogResult.OK)
 			{
 				var files = Directory.GetFiles(dlg.SelectedPath);
-				fileListView1.AddRange(files.Select(f => new FileListViewItem(f)).ToArray());
+				fileListView1.AddRange(files.Select(f =>
+				{
+					var fi = new FileInfo(f);
+					return new FileListViewItem(f)
+					{
+						DateModified = fi.LastWriteTimeUtc,
+						Size = fi.Length
+					};
+				}).ToArray());
 			}
 		}
 	}
