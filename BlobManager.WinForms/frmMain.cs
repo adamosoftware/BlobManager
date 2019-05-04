@@ -12,7 +12,9 @@ namespace BlobManager.WinForms
 {
 	public partial class frmMain : Form
 	{
-		private AppSettings _settings;		
+		private AppSettings _settings;
+		private string _currentPath;
+		private StorageAccount _currentAccount;
 
 		public frmMain()
 		{
@@ -27,6 +29,7 @@ namespace BlobManager.WinForms
 
 		private void LoadLocalFiles(string path)
 		{
+			_currentPath = path;
 			ddbLocalPath.Text = path;
 
 			if (_settings.LocalPaths == null) _settings.LocalPaths = new HashSet<string>();
@@ -43,32 +46,40 @@ namespace BlobManager.WinForms
 			{
 				_settings = JsonSettingsBase.Load<AppSettings>();
 				_settings.FormPosition.Apply(this);
-
-				if (_settings.LocalPaths?.Any() ?? false)
-				{
-					toolStripSeparator1.Visible = true;
-					foreach (var path in _settings.LocalPaths)
-					{
-						var button = new ToolStripButton() { Text = path, Width = 300 };
-						button.Click += delegate (object senderInner, EventArgs eInner) { LoadLocalFiles(path); };
-						ddbLocalPath.DropDownItems.Insert(0, button);
-					}					
-				}							
-
-				if (_settings.StrorageAccounts?.Any() ?? false)
-				{
-					toolStripSeparator2.Visible = true;
-					foreach (var account in _settings.StrorageAccounts)
-					{
-						var button = new ToolStripButton() { Text = account.Name, Width = 300 };
-						button.Click += async delegate (object senderInner, EventArgs eInner) { await LoadContainersAsync(account.Name, account.Key); };
-						ddbStorageAccount.DropDownItems.Insert(0, button);
-					}
-				}
+				FillLocalPathMenu();
+				FillStorageAccountMenu();
 			}
 			catch (Exception exc)
 			{
 				MessageBox.Show(exc.Message);
+			}
+		}
+
+		private void FillStorageAccountMenu()
+		{
+			if (_settings.StrorageAccounts?.Any() ?? false)
+			{
+				toolStripSeparator2.Visible = true;
+				foreach (var account in _settings.StrorageAccounts)
+				{
+					var button = new ToolStripButton() { Text = account.Name, Width = 300 };
+					button.Click += async delegate (object senderInner, EventArgs eInner) { await LoadContainersAsync(account.Name, account.Key); };
+					ddbStorageAccount.DropDownItems.Insert(0, button);
+				}
+			}
+		}
+
+		private void FillLocalPathMenu()
+		{
+			if (_settings.LocalPaths?.Any() ?? false)
+			{
+				toolStripSeparator1.Visible = true;
+				foreach (var path in _settings.LocalPaths)
+				{
+					var button = new ToolStripButton() { Text = path, Width = 300 };
+					button.Click += delegate (object senderInner, EventArgs eInner) { LoadLocalFiles(path); };
+					ddbLocalPath.DropDownItems.Insert(0, button);
+				}
 			}
 		}
 
@@ -81,12 +92,13 @@ namespace BlobManager.WinForms
 		private async void selectToolStripMenuItem1_Click(object sender, EventArgs e)
 		{
 			frmStorageAccount dlg = new frmStorageAccount();
-			if (dlg.ShowDialog() == DialogResult.OK) await LoadContainersAsync(dlg.AccountName, dlg.AccountKey);
-			
+			if (dlg.ShowDialog() == DialogResult.OK) await LoadContainersAsync(dlg.AccountName, dlg.AccountKey);			
 		}
 
 		private async Task LoadContainersAsync(string accountName, string accountKey)
 		{
+			_currentAccount = new StorageAccount() { Name = accountName, Key = accountKey };
+
 			ddbStorageAccount.Text = accountName;
 
 			if (_settings.StrorageAccounts == null) _settings.StrorageAccounts = new HashSet<StorageAccount>();
