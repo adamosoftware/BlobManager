@@ -28,16 +28,9 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.fileListView1 = new BlobManager.WinForms.Controls.FileListView();
 			this.button1 = new System.Windows.Forms.Button();
+			this.fileGridView1 = new BlobManager.WinForms.Controls.FileGridView();
 			this.SuspendLayout();
-			// 
-			// fileListView1
-			// 
-			this.fileListView1.Location = new System.Drawing.Point(119, 96);
-			this.fileListView1.Name = "fileListView1";
-			this.fileListView1.Size = new System.Drawing.Size(556, 288);
-			this.fileListView1.TabIndex = 0;
 			// 
 			// button1
 			// 
@@ -49,13 +42,20 @@
 			this.button1.UseVisualStyleBackColor = true;
 			this.button1.Click += new System.EventHandler(this.button1_Click);
 			// 
+			// fileGridView1
+			// 
+			this.fileGridView1.Location = new System.Drawing.Point(128, 72);
+			this.fileGridView1.Name = "fileGridView1";
+			this.fileGridView1.Size = new System.Drawing.Size(593, 263);
+			this.fileGridView1.TabIndex = 2;
+			// 
 			// frmMain
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(800, 450);
+			this.Controls.Add(this.fileGridView1);
 			this.Controls.Add(this.button1);
-			this.Controls.Add(this.fileListView1);
 			this.Name = "frmMain";
 			this.Text = "Form1";
 			this.ResumeLayout(false);
@@ -63,9 +63,8 @@
 		}
 
 		#endregion
-
-		private Controls.FileListView fileListView1;
 		private System.Windows.Forms.Button button1;
+		private Controls.FileGridView fileGridView1;
 	}
 }
 

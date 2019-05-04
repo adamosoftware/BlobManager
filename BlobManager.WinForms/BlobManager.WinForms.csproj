@@ -59,6 +59,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\FileGridView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\FileGridView.Designer.cs">
+      <DependentUpon>FileGridView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\FileListView.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -73,8 +79,12 @@
       <DependentUpon>frmMain.cs</DependentUpon>
     </Compile>
     <Compile Include="Interfaces\IFileItem.cs" />
+    <Compile Include="Models\FileItem.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Controls\FileGridView.resx">
+      <DependentUpon>FileGridView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\FileListView.resx">
       <DependentUpon>FileListView.cs</DependentUpon>
     </EmbeddedResource>

@@ -1,0 +1,132 @@
+﻿namespace BlobManager.WinForms.Controls
+{
+	partial class FileGridView
+	{
+		/// <summary> 
+		/// Required designer variable.
+		/// </summary>
+		private System.ComponentModel.IContainer components = null;
+
+		/// <summary> 
+		/// Clean up any resources being used.
+		/// </summary>
+		/// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+		protected override void Dispose(bool disposing)
+		{
+			if (disposing && (components != null))
+			{
+				components.Dispose();
+			}
+			base.Dispose(disposing);
+		}
+
+		#region Component Designer generated code
+
+		/// <summary> 
+		/// Required method for Designer support - do not modify 
+		/// the contents of this method with the code editor.
+		/// </summary>
+		private void InitializeComponent()
+		{
+			this.components = new System.ComponentModel.Container();
+			this.dataGridView1 = new System.Windows.Forms.DataGridView();
+			this.colSelected = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+			this.colIcon = new System.Windows.Forms.DataGridViewImageColumn();
+			this.colName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.colDateModified = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.colSize = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.imlSmallIcons = new System.Windows.Forms.ImageList(this.components);
+			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+			this.SuspendLayout();
+			// 
+			// dataGridView1
+			// 
+			this.dataGridView1.AllowUserToAddRows = false;
+			this.dataGridView1.AllowUserToResizeRows = false;
+			this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+			this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.colSelected,
+            this.colIcon,
+            this.colName,
+            this.colDateModified,
+            this.colSize});
+			this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.dataGridView1.GridColor = System.Drawing.SystemColors.Window;
+			this.dataGridView1.Location = new System.Drawing.Point(0, 0);
+			this.dataGridView1.Name = "dataGridView1";
+			this.dataGridView1.RowHeadersVisible = false;
+			this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+			this.dataGridView1.Size = new System.Drawing.Size(437, 263);
+			this.dataGridView1.TabIndex = 0;
+			// 
+			// colSelected
+			// 
+			this.colSelected.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+			this.colSelected.DataPropertyName = "Selected";
+			this.colSelected.HeaderText = "";
+			this.colSelected.Name = "colSelected";
+			this.colSelected.Width = 5;
+			// 
+			// colIcon
+			// 
+			this.colIcon.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+			this.colIcon.DataPropertyName = "Icon";
+			this.colIcon.HeaderText = "";
+			this.colIcon.Name = "colIcon";
+			this.colIcon.ReadOnly = true;
+			this.colIcon.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+			this.colIcon.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+			this.colIcon.Width = 19;
+			// 
+			// colName
+			// 
+			this.colName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+			this.colName.DataPropertyName = "Name";
+			this.colName.HeaderText = "Name";
+			this.colName.Name = "colName";
+			// 
+			// colDateModified
+			// 
+			this.colDateModified.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+			this.colDateModified.DataPropertyName = "DateModified";
+			this.colDateModified.HeaderText = "Date Modified";
+			this.colDateModified.Name = "colDateModified";
+			this.colDateModified.Width = 98;
+			// 
+			// colSize
+			// 
+			this.colSize.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+			this.colSize.DataPropertyName = "SizeText";
+			this.colSize.HeaderText = "Size";
+			this.colSize.Name = "colSize";
+			this.colSize.Width = 52;
+			// 
+			// imlSmallIcons
+			// 
+			this.imlSmallIcons.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
+			this.imlSmallIcons.ImageSize = new System.Drawing.Size(16, 16);
+			this.imlSmallIcons.TransparentColor = System.Drawing.Color.Transparent;
+			// 
+			// FileGridView
+			// 
+			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.Controls.Add(this.dataGridView1);
+			this.Name = "FileGridView";
+			this.Size = new System.Drawing.Size(437, 263);
+			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+			this.ResumeLayout(false);
+
+		}
+
+		#endregion
+
+		private System.Windows.Forms.DataGridView dataGridView1;
+		private System.Windows.Forms.ImageList imlSmallIcons;
+		private System.Windows.Forms.DataGridViewCheckBoxColumn colSelected;
+		private System.Windows.Forms.DataGridViewImageColumn colIcon;
+		private System.Windows.Forms.DataGridViewTextBoxColumn colName;
+		private System.Windows.Forms.DataGridViewTextBoxColumn colDateModified;
+		private System.Windows.Forms.DataGridViewTextBoxColumn colSize;
+	}
+}

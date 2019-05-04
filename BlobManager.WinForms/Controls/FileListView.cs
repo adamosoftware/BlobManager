@@ -1,5 +1,4 @@
 ﻿using System.Windows.Forms;
-using WinForms.Library;
 using static WinForms.Library.FileSystem;
 
 namespace BlobManager.WinForms.Controls
@@ -14,9 +13,7 @@ namespace BlobManager.WinForms.Controls
 
 		public void Add(FileListViewItem fileItem)
 		{
-			var item = lvFiles.Items.Add(fileItem);
-			item.ImageKey = FileSystem.AddIcon(imlSmallIcons, fileItem.Path, IconSize.Small);
-			
+			AddRange(new FileListViewItem[] { fileItem });
 		}
 
 		public void AddRange(FileListViewItem[] fileItems)
