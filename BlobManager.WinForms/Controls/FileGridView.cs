@@ -22,8 +22,18 @@ namespace BlobManager.WinForms.Controls
 			foreach (var item in files)
 			{
 				_files.Add(item);
-				string ext = FileSystem.AddIcon(imlSmallIcons, item.Path, FileSystem.IconSize.Small);
-				item.Icon = imlSmallIcons.Images[ext];
+				switch (item.ItemType)
+				{
+					case FileItemType.File:
+						string ext = FileSystem.AddIcon(imlSmallIcons, item.Path, FileSystem.IconSize.Small);
+						item.Icon = imlSmallIcons.Images[ext];
+						break;
+
+					case FileItemType.Folder:
+						item.Icon = imlSmallIcons.Images["folder"];
+						break;
+				}
+				
 			}
 		}
 	}

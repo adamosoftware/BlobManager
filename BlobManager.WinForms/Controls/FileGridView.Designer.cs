@@ -29,6 +29,7 @@
 		private void InitializeComponent()
 		{
 			this.components = new System.ComponentModel.Container();
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FileGridView));
 			this.dataGridView1 = new System.Windows.Forms.DataGridView();
 			this.colSelected = new System.Windows.Forms.DataGridViewCheckBoxColumn();
 			this.colIcon = new System.Windows.Forms.DataGridViewImageColumn();
@@ -75,8 +76,7 @@
 			this.colIcon.Name = "colIcon";
 			this.colIcon.ReadOnly = true;
 			this.colIcon.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-			this.colIcon.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-			this.colIcon.Width = 19;
+			this.colIcon.Width = 5;
 			// 
 			// colName
 			// 
@@ -99,13 +99,14 @@
 			this.colSize.DataPropertyName = "SizeText";
 			this.colSize.HeaderText = "Size";
 			this.colSize.Name = "colSize";
+			this.colSize.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
 			this.colSize.Width = 52;
 			// 
 			// imlSmallIcons
 			// 
-			this.imlSmallIcons.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
-			this.imlSmallIcons.ImageSize = new System.Drawing.Size(16, 16);
+			this.imlSmallIcons.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imlSmallIcons.ImageStream")));
 			this.imlSmallIcons.TransparentColor = System.Drawing.Color.Transparent;
+			this.imlSmallIcons.Images.SetKeyName(0, "folder");
 			// 
 			// FileGridView
 			// 

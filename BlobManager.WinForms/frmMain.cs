@@ -18,6 +18,16 @@ namespace BlobManager.WinForms
 			FolderBrowserDialog dlg = new FolderBrowserDialog();
 			if (dlg.ShowDialog() == DialogResult.OK)
 			{
+				var folders = Directory.GetDirectories(dlg.SelectedPath);
+				fileGridView1.AddRange(folders.Select(f =>
+				{
+					return new Models.FileItem()
+					{
+						ItemType = Models.FileItemType.Folder,
+						Path = f
+					};
+				}));
+
 				var files = Directory.GetFiles(dlg.SelectedPath);
 				fileGridView1.AddRange(files.Select(f =>
 				{
@@ -29,6 +39,9 @@ namespace BlobManager.WinForms
 						DateModified = fi.LastWriteTime
 					};
 				}));
+
+				
+
 			}
 		}
 	}

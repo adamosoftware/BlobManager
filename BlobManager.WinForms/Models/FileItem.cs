@@ -3,8 +3,15 @@ using System.Drawing;
 
 namespace BlobManager.WinForms.Models
 {
+	public enum FileItemType
+	{
+		Folder,
+		File
+	}
+
 	public class FileItem
 	{
+		public FileItemType ItemType { get; set; } = FileItemType.File;
 		public bool IsSelected { get; set; }
 		public string Path { get; set; }
 		public string Name { get { return System.IO.Path.GetFileName(Path); } }
