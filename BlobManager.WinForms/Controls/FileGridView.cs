@@ -50,8 +50,7 @@ namespace BlobManager.WinForms.Controls
 					case FileItemType.Folder:
 						item.Icon = imlSmallIcons.Images["folder"];
 						break;
-				}
-				
+				}				
 			}
 		}
 

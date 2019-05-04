@@ -31,16 +31,22 @@
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
 			this.splitContainer1 = new System.Windows.Forms.SplitContainer();
 			this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-			this.btnSelectLocalFolder = new System.Windows.Forms.ToolStripButton();
 			this.toolStrip2 = new System.Windows.Forms.ToolStrip();
-			this.tslLocalPath = new System.Windows.Forms.ToolStripLabel();
 			this.fgvLocal = new BlobManager.WinForms.Controls.FileGridView();
 			this.fgvRemote = new BlobManager.WinForms.Controls.FileGridView();
+			this.ddbLocalPath = new System.Windows.Forms.ToolStripDropDownButton();
+			this.selectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+			this.ddbStorageAccount = new System.Windows.Forms.ToolStripDropDownButton();
+			this.selectToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+			this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+			this.cbContainer = new System.Windows.Forms.ToolStripComboBox();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
 			this.splitContainer1.Panel1.SuspendLayout();
 			this.splitContainer1.Panel2.SuspendLayout();
 			this.splitContainer1.SuspendLayout();
 			this.toolStrip1.SuspendLayout();
+			this.toolStrip2.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// splitContainer1
@@ -65,38 +71,23 @@
 			// toolStrip1
 			// 
 			this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tslLocalPath,
-            this.btnSelectLocalFolder});
+            this.ddbLocalPath});
 			this.toolStrip1.Location = new System.Drawing.Point(0, 0);
 			this.toolStrip1.Name = "toolStrip1";
 			this.toolStrip1.Size = new System.Drawing.Size(384, 25);
 			this.toolStrip1.TabIndex = 1;
 			this.toolStrip1.Text = "toolStrip1";
 			// 
-			// btnSelectLocalFolder
-			// 
-			this.btnSelectLocalFolder.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-			this.btnSelectLocalFolder.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-			this.btnSelectLocalFolder.Image = ((System.Drawing.Image)(resources.GetObject("btnSelectLocalFolder.Image")));
-			this.btnSelectLocalFolder.ImageTransparentColor = System.Drawing.Color.Magenta;
-			this.btnSelectLocalFolder.Name = "btnSelectLocalFolder";
-			this.btnSelectLocalFolder.Size = new System.Drawing.Size(51, 22);
-			this.btnSelectLocalFolder.Text = "Select...";
-			this.btnSelectLocalFolder.Click += new System.EventHandler(this.btnSelectLocalFolder_Click);
-			// 
 			// toolStrip2
 			// 
+			this.toolStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ddbStorageAccount,
+            this.cbContainer});
 			this.toolStrip2.Location = new System.Drawing.Point(0, 0);
 			this.toolStrip2.Name = "toolStrip2";
 			this.toolStrip2.Size = new System.Drawing.Size(385, 25);
 			this.toolStrip2.TabIndex = 0;
 			this.toolStrip2.Text = "toolStrip2";
-			// 
-			// tslLocalPath
-			// 
-			this.tslLocalPath.Name = "tslLocalPath";
-			this.tslLocalPath.Size = new System.Drawing.Size(59, 22);
-			this.tslLocalPath.Text = "local path";
 			// 
 			// fgvLocal
 			// 
@@ -114,6 +105,63 @@
 			this.fgvRemote.Size = new System.Drawing.Size(385, 332);
 			this.fgvRemote.TabIndex = 1;
 			// 
+			// ddbLocalPath
+			// 
+			this.ddbLocalPath.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+			this.ddbLocalPath.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripSeparator1,
+            this.selectToolStripMenuItem});
+			this.ddbLocalPath.Image = ((System.Drawing.Image)(resources.GetObject("ddbLocalPath.Image")));
+			this.ddbLocalPath.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.ddbLocalPath.Name = "ddbLocalPath";
+			this.ddbLocalPath.Size = new System.Drawing.Size(75, 22);
+			this.ddbLocalPath.Text = "Local Path";
+			// 
+			// selectToolStripMenuItem
+			// 
+			this.selectToolStripMenuItem.Name = "selectToolStripMenuItem";
+			this.selectToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+			this.selectToolStripMenuItem.Text = "Select...";
+			this.selectToolStripMenuItem.Click += new System.EventHandler(this.selectToolStripMenuItem_Click);
+			// 
+			// toolStripSeparator1
+			// 
+			this.toolStripSeparator1.Name = "toolStripSeparator1";
+			this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
+			this.toolStripSeparator1.Visible = false;
+			// 
+			// ddbStorageAccount
+			// 
+			this.ddbStorageAccount.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+			this.ddbStorageAccount.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripSeparator2,
+            this.selectToolStripMenuItem1});
+			this.ddbStorageAccount.Image = ((System.Drawing.Image)(resources.GetObject("ddbStorageAccount.Image")));
+			this.ddbStorageAccount.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.ddbStorageAccount.Name = "ddbStorageAccount";
+			this.ddbStorageAccount.Size = new System.Drawing.Size(108, 22);
+			this.ddbStorageAccount.Text = "Storage Account";
+			// 
+			// selectToolStripMenuItem1
+			// 
+			this.selectToolStripMenuItem1.Name = "selectToolStripMenuItem1";
+			this.selectToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+			this.selectToolStripMenuItem1.Text = "Select...";
+			this.selectToolStripMenuItem1.Click += new System.EventHandler(this.selectToolStripMenuItem1_Click);
+			// 
+			// toolStripSeparator2
+			// 
+			this.toolStripSeparator2.Name = "toolStripSeparator2";
+			this.toolStripSeparator2.Size = new System.Drawing.Size(177, 6);
+			this.toolStripSeparator2.Visible = false;
+			// 
+			// cbContainer
+			// 
+			this.cbContainer.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.cbContainer.Name = "cbContainer";
+			this.cbContainer.Size = new System.Drawing.Size(200, 25);
+			this.cbContainer.SelectedIndexChanged += new System.EventHandler(this.cbContainer_SelectedIndexChanged);
+			// 
 			// frmMain
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -121,7 +169,9 @@
 			this.ClientSize = new System.Drawing.Size(773, 357);
 			this.Controls.Add(this.splitContainer1);
 			this.Name = "frmMain";
-			this.Text = "Form1";
+			this.Text = "Blob Uploader";
+			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmMain_FormClosing);
+			this.Load += new System.EventHandler(this.frmMain_Load);
 			this.splitContainer1.Panel1.ResumeLayout(false);
 			this.splitContainer1.Panel1.PerformLayout();
 			this.splitContainer1.Panel2.ResumeLayout(false);
@@ -130,6 +180,8 @@
 			this.splitContainer1.ResumeLayout(false);
 			this.toolStrip1.ResumeLayout(false);
 			this.toolStrip1.PerformLayout();
+			this.toolStrip2.ResumeLayout(false);
+			this.toolStrip2.PerformLayout();
 			this.ResumeLayout(false);
 
 		}
@@ -139,10 +191,15 @@
 		private System.Windows.Forms.SplitContainer splitContainer1;
 		private Controls.FileGridView fgvLocal;
 		private System.Windows.Forms.ToolStrip toolStrip1;
-		private System.Windows.Forms.ToolStripButton btnSelectLocalFolder;
 		private Controls.FileGridView fgvRemote;
 		private System.Windows.Forms.ToolStrip toolStrip2;
-		private System.Windows.Forms.ToolStripLabel tslLocalPath;
+		private System.Windows.Forms.ToolStripDropDownButton ddbLocalPath;
+		private System.Windows.Forms.ToolStripMenuItem selectToolStripMenuItem;
+		private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+		private System.Windows.Forms.ToolStripDropDownButton ddbStorageAccount;
+		private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+		private System.Windows.Forms.ToolStripMenuItem selectToolStripMenuItem1;
+		private System.Windows.Forms.ToolStripComboBox cbContainer;
 	}
 }
 
