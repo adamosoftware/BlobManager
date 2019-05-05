@@ -71,6 +71,7 @@
     <Compile Include="Controls\FileGridView.Designer.cs">
       <DependentUpon>FileGridView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Extensions\ComboBoxExtensions.cs" />
     <Compile Include="frmMain.cs">
       <SubType>Form</SubType>
     </Compile>

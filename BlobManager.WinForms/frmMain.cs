@@ -96,24 +96,29 @@ namespace BlobManager.WinForms
 		}
 
 		private async Task LoadContainersAsync(string accountName, string accountKey)
-		{
-			_currentAccount = new StorageAccount() { Name = accountName, Key = accountKey };
+        {
+            _currentAccount = new StorageAccount() { Name = accountName, Key = accountKey };
 
-			ddbStorageAccount.Text = accountName;
+            ddbStorageAccount.Text = accountName;
 
-			if (_settings.StrorageAccounts == null) _settings.StrorageAccounts = new HashSet<StorageAccount>();
-			_settings.StrorageAccounts.Add(new StorageAccount() { Name = accountName, Key = accountKey });
+            if (_settings.StrorageAccounts == null) _settings.StrorageAccounts = new HashSet<StorageAccount>();
+            _settings.StrorageAccounts.Add(new StorageAccount() { Name = accountName, Key = accountKey });
 
-			fgvRemote.Clear();
+            await LoadContainersInnerAsync();
+        }
 
-			var storage = new BlobStorage(accountName, accountKey);
-			var containers = await storage.ListContainersAsync();
+        private async Task LoadContainersInnerAsync()
+        {
+            fgvRemote.Clear();
 
-			cbContainer.Items.Clear();
-			cbContainer.Items.AddRange(containers.ToArray());
-		}
+            var storage = new BlobStorage(_currentAccount);
+            var containers = await storage.ListContainersAsync();
 
-		private async void cbContainer_SelectedIndexChanged(object sender, EventArgs e)
+            cbContainer.Items.Clear();
+            cbContainer.Items.AddRange(containers.ToArray());
+        }
+
+        private async void cbContainer_SelectedIndexChanged(object sender, EventArgs e)
 		{
 			var storage = new BlobStorage(_currentAccount);
 			string containerName = cbContainer.SelectedItem as string;
@@ -122,9 +127,15 @@ namespace BlobManager.WinForms
 			fgvRemote.AddRange(items);
 		}
 
-        private void BtnAddContainer_Click(object sender, EventArgs e)
+        private async void BtnAddContainer_Click(object sender, EventArgs e)
         {
-
+            var dlg = new frmNewContainer();
+            dlg.StorageAccount = _currentAccount;
+            if (dlg.ShowDialog() == DialogResult.OK)
+            {
+                await LoadContainersInnerAsync();
+                cbContainer.SelectedItem = dlg.ContainerName;
+            }
         }
     }
 }

@@ -78,6 +78,10 @@
             // 
             this.cbPermissions.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbPermissions.FormattingEnabled = true;
+            this.cbPermissions.Items.AddRange(new object[] {
+            "Private - access by account owner only",
+            "Blob - public read access for blobs",
+            "Container - public read access for containers and blobs"});
             this.cbPermissions.Location = new System.Drawing.Point(129, 38);
             this.cbPermissions.Name = "cbPermissions";
             this.cbPermissions.Size = new System.Drawing.Size(309, 21);
@@ -111,6 +115,7 @@
             this.Name = "frmNewContainer";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "New Container";
+            this.Load += new System.EventHandler(this.frmNewContainer_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

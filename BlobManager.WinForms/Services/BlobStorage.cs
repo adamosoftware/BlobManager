@@ -28,8 +28,7 @@ namespace BlobManager.WinForms.Services
 
 		public async Task<IEnumerable<string>> ListContainersAsync()
 		{
-			var account = new CloudStorageAccount(new StorageCredentials(_accountName, _accountKey), true);
-			var client = account.CreateCloudBlobClient();
+            var client = GetClient();
 			var token = new BlobContinuationToken();
 
 			List<string> results = new List<string>();
@@ -45,8 +44,7 @@ namespace BlobManager.WinForms.Services
 
 		public async Task<IEnumerable<FileItem>> ListBlobsAsync(string containerName)
 		{
-			var account = new CloudStorageAccount(new StorageCredentials(_accountName, _accountKey), true);
-			var client = account.CreateCloudBlobClient();
+            var client = GetClient();
 			var token = new BlobContinuationToken();
 			var container = client.GetContainerReference(containerName);
 			if (!(await container.ExistsAsync())) throw new ArgumentException($"Container {container} does not exist in account {_accountName}.");
@@ -80,6 +78,19 @@ namespace BlobManager.WinForms.Services
 			} while (token != null);
 
 			return results;
-		}
-	}
+		}        
+
+        public async Task CreateContainerAsync(string containerName, BlobContainerPublicAccessType accessType)
+        {
+            var client = GetClient();
+            var container = client.GetContainerReference(containerName);
+            await container.CreateAsync(accessType, null, null);
+        }
+
+        private CloudBlobClient GetClient()
+        {
+            var account = new CloudStorageAccount(new StorageCredentials(_accountName, _accountKey), true);
+            return account.CreateCloudBlobClient();
+        }
+    }
 }
