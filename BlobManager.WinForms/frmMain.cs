@@ -121,5 +121,10 @@ namespace BlobManager.WinForms
 			fgvRemote.Clear();
 			fgvRemote.AddRange(items);
 		}
-	}
+
+        private void BtnAddContainer_Click(object sender, EventArgs e)
+        {
+
+        }
+    }
 }
