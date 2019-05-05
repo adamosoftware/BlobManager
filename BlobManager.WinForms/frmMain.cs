@@ -137,5 +137,11 @@ namespace BlobManager.WinForms
                 cbContainer.SelectedItem = dlg.ContainerName;
             }
         }
+
+        private void uploadHistoryToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            splitContainer2.Panel2Collapsed = !splitContainer2.Panel2Collapsed;
+            uploadHistoryToolStripMenuItem.Checked = !splitContainer2.Panel2Collapsed;
+        }
     }
 }
