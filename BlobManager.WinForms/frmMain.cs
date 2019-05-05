@@ -45,7 +45,7 @@ namespace BlobManager.WinForms
 			try
 			{
 				_settings = JsonSettingsBase.Load<AppSettings>();
-				_settings.FormPosition.Apply(this);
+				_settings.FormPosition?.Apply(this);
 				FillLocalPathMenu();
 				FillStorageAccountMenu();
 			}
