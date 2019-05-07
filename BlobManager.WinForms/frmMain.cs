@@ -1,8 +1,11 @@
 ﻿using BlobManager.WinForms.Models;
 using BlobManager.WinForms.Services;
 using JsonSettings;
+using Microsoft.VisualBasic;
+using Microsoft.VisualBasic.FileIO;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -144,6 +147,30 @@ namespace BlobManager.WinForms
         {
             splitContainer2.Panel2Collapsed = !splitContainer2.Panel2Collapsed;
             uploadHistoryToolStripMenuItem.Checked = !splitContainer2.Panel2Collapsed;
+        }
+
+        private FileItem fgvLocal_FileReceived(string localPath)
+        {
+            if (string.IsNullOrEmpty(_currentPath))
+            {
+                throw new Exception("Please select a local folder.");                
+            }
+
+            if (Directory.Exists(localPath))
+            {
+                string targetPath = Path.Combine(_currentPath, Path.GetFileName(localPath));
+                Microsoft.VisualBasic.FileIO.FileSystem.CopyDirectory(localPath, targetPath, UIOption.AllDialogs);
+                return FileItem.FromLocalFolder(localPath);
+            }
+
+            if (File.Exists(localPath))
+            {
+                string targetPath = Path.Combine(_currentPath, Path.GetFileName(localPath));
+                Microsoft.VisualBasic.FileIO.FileSystem.CopyFile(localPath, targetPath, UIOption.AllDialogs);
+                return FileItem.FromLocalFile(localPath);
+            }
+
+            throw new FileNotFoundException();
         }
     }
 }

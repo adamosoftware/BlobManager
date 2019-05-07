@@ -8,7 +8,7 @@ using WinForms.Library;
 
 namespace BlobManager.WinForms.Controls
 {
-    public delegate FileItem FileReceivedHandler(string localFile);
+    public delegate FileItem FileReceivedHandler(string localPath);
 
 	public partial class FileGridView : UserControl
 	{
@@ -50,22 +50,30 @@ namespace BlobManager.WinForms.Controls
         }
 
 		public void AddRange(IEnumerable<FileItem> files)
-		{
-			foreach (var item in files)
-			{
-				_files.Add(item);
-				switch (item.ItemType)
-				{
-					case FileItemType.File:
-						string ext = FileSystem.AddIcon(imlSmallIcons, item.Path, FileSystem.IconSize.Small);
-						item.Icon = imlSmallIcons.Images[ext];
-						break;
+		{            
+            if (dataGridView1.CurrentCell != null) dataGridView1.BeginEdit(false);
+            try
+            {
+                foreach (var item in files)
+                {
+                    _files.Add(item);
+                    switch (item.ItemType)
+                    {
+                        case FileItemType.File:
+                            string ext = FileSystem.AddIcon(imlSmallIcons, item.Path, FileSystem.IconSize.Small);
+                            item.Icon = imlSmallIcons.Images[ext];
+                            break;
 
-					case FileItemType.Folder:
-						item.Icon = imlSmallIcons.Images["folder"];
-						break;
-				}				
-			}
+                        case FileItemType.Folder:
+                            item.Icon = imlSmallIcons.Images["folder"];
+                            break;
+                    }
+                }
+            }
+            finally
+            {
+                dataGridView1.EndEdit();
+            }
 		}
 
         [Browsable(false)]
@@ -96,6 +104,7 @@ namespace BlobManager.WinForms.Controls
                 try
                 {
                     toolStripProgressBar1.Visible = true;
+                    toolStripProgressBar1.Value = 0;
                     toolStripProgressBar1.Maximum = files.Length;
                     foreach (var file in files)
                     {
@@ -104,6 +113,10 @@ namespace BlobManager.WinForms.Controls
                         var item = FileReceived?.Invoke(file); // do your upload or local copy here
                         if (item != null) Add(item);                        
                     }                    
+                }
+                catch (Exception exc)
+                {
+                    MessageBox.Show(exc.Message);
                 }
                 finally
                 {
@@ -121,6 +134,14 @@ namespace BlobManager.WinForms.Controls
             {
                 e.Effect = DragDropEffects.Copy;
             }            
+        }
+
+        private void dataGridView1_DragOver(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                e.Effect = DragDropEffects.Copy;
+            }
         }
     }
 }

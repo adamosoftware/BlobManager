@@ -30,10 +30,12 @@
 		{
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.fgvLocal = new BlobManager.WinForms.Controls.FileGridView();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.ddbLocalPath = new System.Windows.Forms.ToolStripDropDownButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.selectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.fgvRemote = new BlobManager.WinForms.Controls.FileGridView();
             this.toolStrip2 = new System.Windows.Forms.ToolStrip();
             this.ddbStorageAccount = new System.Windows.Forms.ToolStripDropDownButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
@@ -44,11 +46,9 @@
             this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pendingUploadsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.completedUploadsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.uploadHistoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.uploadHistoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
-            this.fgvLocal = new BlobManager.WinForms.Controls.FileGridView();
-            this.fgvRemote = new BlobManager.WinForms.Controls.FileGridView();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -79,6 +79,16 @@
             this.splitContainer1.Size = new System.Drawing.Size(906, 422);
             this.splitContainer1.SplitterDistance = 450;
             this.splitContainer1.TabIndex = 0;
+            // 
+            // fgvLocal
+            // 
+            this.fgvLocal.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.fgvLocal.Location = new System.Drawing.Point(0, 25);
+            this.fgvLocal.Name = "fgvLocal";
+            this.fgvLocal.Size = new System.Drawing.Size(450, 397);
+            this.fgvLocal.SizingGrip = true;
+            this.fgvLocal.TabIndex = 0;
+            this.fgvLocal.FileReceived += new BlobManager.WinForms.Controls.FileReceivedHandler(this.fgvLocal_FileReceived);
             // 
             // toolStrip1
             // 
@@ -114,6 +124,15 @@
             this.selectToolStripMenuItem.Size = new System.Drawing.Size(114, 22);
             this.selectToolStripMenuItem.Text = "Select...";
             this.selectToolStripMenuItem.Click += new System.EventHandler(this.selectToolStripMenuItem_Click);
+            // 
+            // fgvRemote
+            // 
+            this.fgvRemote.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.fgvRemote.Location = new System.Drawing.Point(0, 25);
+            this.fgvRemote.Name = "fgvRemote";
+            this.fgvRemote.Size = new System.Drawing.Size(452, 397);
+            this.fgvRemote.SizingGrip = true;
+            this.fgvRemote.TabIndex = 1;
             // 
             // toolStrip2
             // 
@@ -193,26 +212,26 @@
             // pendingUploadsToolStripMenuItem
             // 
             this.pendingUploadsToolStripMenuItem.Name = "pendingUploadsToolStripMenuItem";
-            this.pendingUploadsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.pendingUploadsToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
             this.pendingUploadsToolStripMenuItem.Text = "Pending";
             // 
             // completedUploadsToolStripMenuItem
             // 
             this.completedUploadsToolStripMenuItem.Name = "completedUploadsToolStripMenuItem";
-            this.completedUploadsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.completedUploadsToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
             this.completedUploadsToolStripMenuItem.Text = "Completed";
-            // 
-            // uploadHistoryToolStripMenuItem
-            // 
-            this.uploadHistoryToolStripMenuItem.Name = "uploadHistoryToolStripMenuItem";
-            this.uploadHistoryToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.uploadHistoryToolStripMenuItem.Text = "History";
-            this.uploadHistoryToolStripMenuItem.Click += new System.EventHandler(this.uploadHistoryToolStripMenuItem_Click);
             // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(130, 6);
+            // 
+            // uploadHistoryToolStripMenuItem
+            // 
+            this.uploadHistoryToolStripMenuItem.Name = "uploadHistoryToolStripMenuItem";
+            this.uploadHistoryToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
+            this.uploadHistoryToolStripMenuItem.Text = "History";
+            this.uploadHistoryToolStripMenuItem.Click += new System.EventHandler(this.uploadHistoryToolStripMenuItem_Click);
             // 
             // splitContainer2
             // 
@@ -228,22 +247,6 @@
             this.splitContainer2.Size = new System.Drawing.Size(906, 422);
             this.splitContainer2.SplitterDistance = 266;
             this.splitContainer2.TabIndex = 2;
-            // 
-            // fgvLocal
-            // 
-            this.fgvLocal.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.fgvLocal.Location = new System.Drawing.Point(0, 25);
-            this.fgvLocal.Name = "fgvLocal";
-            this.fgvLocal.Size = new System.Drawing.Size(450, 397);
-            this.fgvLocal.TabIndex = 0;
-            // 
-            // fgvRemote
-            // 
-            this.fgvRemote.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.fgvRemote.Location = new System.Drawing.Point(0, 25);
-            this.fgvRemote.Name = "fgvRemote";
-            this.fgvRemote.Size = new System.Drawing.Size(452, 397);
-            this.fgvRemote.TabIndex = 1;
             // 
             // frmMain
             // 

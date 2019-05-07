@@ -39,32 +39,36 @@ namespace BlobManager.WinForms.Models
 			return (Math.Sign(byteCount) * num).ToString() + " " + suf[place];
 		}
 
+        public static FileItem FromLocalFolder(string path)
+        {
+            return new FileItem()
+            {
+                ItemType = FileItemType.Folder,
+                Path = path
+            };
+        }
+
+        public static FileItem FromLocalFile(string path)
+        {
+            FileInfo fi = new FileInfo(path);
+            return new FileItem()
+            {
+                Path = path,
+                Length = fi.Length,
+                DateModified = fi.LastWriteTime
+            };
+        }
+
 		public static IEnumerable<FileItem> FromLocalPath(string path)
 		{
 			List<FileItem> results = new List<FileItem>();
 
 			var folders = Directory.GetDirectories(path);
 
-			results.AddRange(folders.Select(f =>
-			{
-				return new FileItem()
-				{
-					ItemType = FileItemType.Folder,
-					Path = f
-				};
-			}));
+			results.AddRange(folders.Select(f => FromLocalFolder(f)));
 
 			var files = Directory.GetFiles(path);
-			results.AddRange(files.Select(f =>
-			{
-				FileInfo fi = new FileInfo(f);
-				return new FileItem()
-				{
-					Path = f,
-					Length = fi.Length,
-					DateModified = fi.LastWriteTime
-				};
-			}));
+			results.AddRange(files.Select(f => FromLocalFile(f)));
 
 			return results;
 		}
