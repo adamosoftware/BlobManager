@@ -172,5 +172,20 @@ namespace BlobManager.WinForms
 
             throw new FileNotFoundException();
         }
+
+        private void fgvLocal_ItemSelected(object sender, EventArgs e)
+        {
+            var item = fgvLocal.SelectedItem;
+            switch (item.ItemType)
+            {
+                case FileItemType.File:                                  
+                    break;
+
+                case FileItemType.Folder:
+                    fgvLocal.Clear();
+                    fgvLocal.AddRange(FileItem.FromLocalPath(item.Path));
+                    break;
+            }
+        }
     }
 }
