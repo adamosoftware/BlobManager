@@ -44,6 +44,8 @@ namespace BlobManager.WinForms
 		{
 			try
 			{
+                fgvLocal.SizingGrip = false;
+
 				_settings = JsonSettingsBase.Load<AppSettings>();
 				_settings.FormPosition?.Apply(this);
 				FillLocalPathMenu();
